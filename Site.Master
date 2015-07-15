@@ -1,0 +1,61 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="Dell.SiteMaster" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head runat="server">
+    <title></title>
+    <link href="~/Styles/Site.css" rel="stylesheet" type="text/css" />
+    <link href="~/Styles/Style.css" rel="stylesheet" type="text/css" />
+    
+    <asp:ContentPlaceHolder ID="HeadContent" runat="server">
+    </asp:ContentPlaceHolder>
+    <script type="text/javascript" src="../Scripts/jquery.min.js"></script>
+    <script type="text/javascript" src="../Scripts/jquery-ui.min.js"></script>
+    <script type="text/javascript">
+
+
+        $(document).ready(function () {
+            $("#featured > ul").tabs({ fx: { opacity: "toggle"} }).tabs("rotate", 5000, true);
+
+           
+
+        });
+
+        var step = 0;
+        var images = new Array("../images/slide1.png", "../images/slide2.png");
+        function slide_show() {
+
+            if (step < 1) step = step + 1;
+            else step = 0;
+            document.getElementById("slide").src = images[step];
+            //$('#slide').animate({ 'width': '10%', 'height': '10%' }, 4000,reset);
+            setTimeout(slide_show, 4500);
+        }
+
+        function reset() {
+            document.getElementById("slide").setAttribute('width', '960px');
+            document.getElementById("slide").setAttribute('height', '200px');
+            //alert("in reset");
+        }
+
+
+       
+    </script>
+</head>
+<body onload="slide_show()">
+    <form runat="server">
+    <div class="page">
+        <div class="header"  >
+        </div>
+        <div id="menuBar">
+        </div>
+        <div class="main" >
+            <asp:ContentPlaceHolder ID="MainContent" runat="server" >
+            </asp:ContentPlaceHolder>
+        </div>
+        <div class="footer">
+        </div>
+    </div>
+    </form>
+</body>
+</html>
